@@ -28,7 +28,7 @@ public class ChatListener implements Listener
 				Player p = (Player) plugin.getServer().getPlayer(s);
 				if(p.isOnline())
 				{
-					p.sendMessage(ChatColor.DARK_BLUE + "[StaffChat]" + p.getName() + ChatColor.GREEN + e.getMessage());
+					p.sendMessage(ChatColor.DARK_BLUE + "[StaffChat]" + p.getName() + ChatColor.DARK_BLUE + ": " + ChatColor.GREEN + e.getMessage());
 				}
 			}
 		}
