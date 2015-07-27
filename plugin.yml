@@ -1,0 +1,21 @@
+name: StaffChat
+main: me.merinthium.com.Main
+version: 1.0
+description: >
+             This is just a basic StaffChat plugin.
+commands:
+  staffchat:
+    usage: /<command>
+    description: Toggles Staff chat.
+    permission: staffchat.use
+
+permissions:
+   staffchat.*:
+    description: Gives access to all staffchat features.
+    children:
+      Crafthium.craftbook: true
+   staffchat.use:
+    default: false
+    permission-message: Sorry you can't use staffchat.use.
+    
+  

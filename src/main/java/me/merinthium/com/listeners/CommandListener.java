@@ -1,5 +1,7 @@
 package me.merinthium.com.listeners;
 
+import java.util.List;
+
 import me.merinthium.com.Main;
 
 import org.bukkit.ChatColor;
@@ -15,7 +17,7 @@ public class CommandListener implements CommandExecutor
 	{
 		plugin = instance;
 	}
-	@Override
+@Override
 	public boolean onCommand(CommandSender sender,org.bukkit.command.Command command, String label, String[] args) 
 	{
 		if(!(sender instanceof Player))
@@ -29,10 +31,13 @@ public class CommandListener implements CommandExecutor
 			p.sendMessage(ChatColor.RED + "You do not have permission for this command");
 			return true;
 		}
-		if(plugin.getConfig().getString(p.getName() + ".staffchat").equalsIgnoreCase("true"))
+		if (plugin.getConfig().getString(p.getName() + ".staffchat").equalsIgnoreCase("true"))
 		{
 			p.sendMessage(ChatColor.BLUE + "StaffChat Disabled!");
 			plugin.getConfig().set(p.getName() + ".staffchat", "false");
+			List<String> list = plugin.getConfig().getStringList("staff");
+			list.remove(p.getName());
+			plugin.getConfig().set("staff", list);
 			plugin.saveConfig();
 			return true;
 		}
@@ -40,10 +45,14 @@ public class CommandListener implements CommandExecutor
 		{
 			p.sendMessage(ChatColor.BLUE + "StaffChat Enabled!");
 			plugin.getConfig().set(p.getName() + ".staffchat", "true");
+			List<String> list = plugin.getConfig().getStringList("staff");
+			list.add(p.getName());
+			plugin.getConfig().set("staff", list);
 			plugin.saveConfig();
 			return true;
 		}
 		return false;
+		
 	}
 
 }
